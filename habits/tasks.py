@@ -1,11 +1,9 @@
-from datetime import date
-
+import os
+from datetime import datetime
 from celery import shared_task
 from telebot import TeleBot
-
 from habits.models import Habit
 
-api_telegram = '6528415058:AAFsjNe4U70cbbdg83NBX6FVwgQFYNJTCeI'
 
 @shared_task
 def get_list_habits():
@@ -15,7 +13,7 @@ def get_list_habits():
 
     for habit in list_habits:
 
-        if habit.time == date.now():
+        if habit.time == datetime.now():
             send_telegram(habit.id)
 
 
@@ -24,8 +22,8 @@ def send_telegram(id_habit):
 
     habit = Habit.objects.get(pk=id_habit)
 
-    bot = TeleBot(api_telegram)
+    bot = TeleBot(os.getenv('API_TELEGRAM'))
 
-    message = f'Привет, тебе нужно сделать {habit.action} в {habit.action}'
+    message = f'Привет, тебе нужно сделать {habit.action} в {habit.place}'
 
     bot.send_message(habit.user.chat_telegram_id, message)

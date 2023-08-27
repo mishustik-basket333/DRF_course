@@ -3,8 +3,8 @@ from rest_framework.permissions import IsAuthenticated
 
 from habits.models import Habit
 from habits.pagination import HabitsPagination
-from habits.permissions import OwnerPermission
 from habits.serializers import HabitSerializer
+# from habits.permissions import OwnerPermission
 
 
 class HabitCreateAPIView(generics.CreateAPIView):

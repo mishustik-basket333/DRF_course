@@ -9,18 +9,22 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
+from dotenv import load_dotenv
 from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR/'.env')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tu_j02($4oz5z*2tm!&58k3-8#c55k-#d=j!y&nw-#s&@p-(e@'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,8 +94,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'drf_course',
-        'USER': 'postgres',
-        'PASSWORD': 'qwerty',
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': 5432,
     }
@@ -166,9 +170,10 @@ CELERY_TIMEZONE = "Russia/Moscow"  # Часовой пояс для работы
 CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выполнения задач
 CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи
 
-CELERY_BEAT_SCHEDULE = {
-    'get_list_habits': {
-        'task': 'habits.get_list_habits',  # Путь к задаче
-        'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (например, каждые 10 минут)
-    },
-}
+if os.getenv('CELERY_BEAT_SCHEDULE_ENABLE') == 'True':
+    CELERY_BEAT_SCHEDULE = {
+        'get_list_habits': {
+            'task': 'habits.get_list_habits',  # Путь к задаче
+            'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (например, каждые 10 минут)
+        },
+    }
