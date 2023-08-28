@@ -17,17 +17,44 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Habit',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('place', models.CharField(max_length=255, verbose_name='Место')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
+                ('place', models.CharField(
+                    max_length=255,
+                    verbose_name='Место')),
                 ('time', models.DateTimeField(verbose_name='Время')),
-                ('action', models.CharField(max_length=255, verbose_name='Действие')),
-                ('sign_nice_habit', models.BooleanField(default=False, verbose_name='Признак приятной привычки')),
-                ('frequency', models.IntegerField(default=1, verbose_name='Периодичность в днях')),
-                ('award', models.CharField(blank=True, max_length=255, null=True, verbose_name='Вознаграждение')),
-                ('execution_time', models.IntegerField(blank=True, null=True, verbose_name='Время выполнения')),
-                ('flag_public', models.BooleanField(default=False, verbose_name='Признак публичности')),
-                ('related_habit', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='habits.habit', verbose_name='Связанная привычка')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
+                ('action', models.CharField(
+                    max_length=255,
+                    verbose_name='Действие')),
+                ('sign_nice_habit', models.BooleanField(
+                    default=False,
+                    verbose_name='Признак приятной привычки')),
+                ('frequency', models.IntegerField(
+                    default=1,
+                    verbose_name='Периодичность в днях')),
+                ('award', models.CharField(
+                    blank=True,
+                    max_length=255,
+                    null=True,
+                    verbose_name='Вознаграждение')),
+                ('execution_time', models.IntegerField(
+                    blank=True,
+                    null=True,
+                    verbose_name='Время выполнения')),
+                ('flag_public', models.BooleanField(
+                    default=False,
+                    verbose_name='Признак публичности')),
+                ('related_habit', models.ForeignKey(
+                    blank=True, null=True,
+                    on_delete=django.db.models.deletion.SET_NULL,
+                    to='habits.habit', verbose_name='Связанная привычка')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL,
+                    verbose_name='Пользователь')),
             ],
             options={
                 'verbose_name': 'привычка',

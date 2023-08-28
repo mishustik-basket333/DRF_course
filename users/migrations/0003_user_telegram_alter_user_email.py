@@ -13,12 +13,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='telegram',
-            field=models.CharField(default=13, max_length=255, unique=True, verbose_name='Телеграмм'),
+            field=models.CharField(
+                default=13,
+                max_length=255,
+                unique=True,
+                verbose_name='Телеграмм'),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='user',
             name='email',
-            field=models.EmailField(max_length=254, unique=True, verbose_name='Почта'),
+            field=models.EmailField(
+                max_length=254,
+                unique=True,
+                verbose_name='Почта'),
         ),
     ]
