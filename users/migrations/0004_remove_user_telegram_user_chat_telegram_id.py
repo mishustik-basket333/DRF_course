@@ -17,7 +17,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='chat_telegram_id',
-            field=models.CharField(default=123, max_length=255, unique=True, verbose_name=' Ссылка на телеграмм'),
+            field=models.CharField(
+                default=123,
+                max_length=255,
+                unique=True,
+                verbose_name=' Ссылка на телеграмм'),
             preserve_default=False,
         ),
     ]

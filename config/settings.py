@@ -177,3 +177,16 @@ if os.getenv('CELERY_BEAT_SCHEDULE_ENABLE') == 'True':
             'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (например, каждые 10 минут)
         },
     }
+
+
+#  Авторизация
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
+}
