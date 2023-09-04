@@ -34,9 +34,14 @@
 В файле проекта лежит .env.sample и на его основе требуется создать файл .env, для запуска проекта.
 Нужно указать соответствующие ваши данные, в файле даны подсказки.
 
-DOCKER COMPOSE:
+DOCKER and DOCKER COMPOSE:
   - добавлены файлы Dockerfile и docker-compose.yaml
-  - для запуска используйте команду в терминале:
+  - команда, чтобы собрать Docker-образ. Здесь -t my-python-app задает имя образа,
+  а . указывает на текущую директорию с Dockerfile:
+    docker build -t my-python-app .
+  - команда для запуска контейнера:
+    docker run my-python-app
+  - для запуска docker-compose используйте команду в терминале:
     docker-compose up --build
         
 FLAKE8:
