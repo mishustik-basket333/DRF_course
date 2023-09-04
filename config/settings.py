@@ -164,12 +164,8 @@ CORS_ALLOW_ALL_ORIGINS = False
 # CELERY
 
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://localhost:6379'
-# Например, Redis, который по умолчанию работает на порту 6379
-
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-# URL-адрес брокера результатов, также Redis
-
+CELERY_BROKER_URL = 'redis://localhost:6379'  # Например, Redis, который по умолчанию работает на порту 6379
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'  # URL-адрес брокера результатов, также Redis
 CELERY_TIMEZONE = "Russia/Moscow"  # Часовой пояс для работы Celery
 CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выполнения задач
 CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи
