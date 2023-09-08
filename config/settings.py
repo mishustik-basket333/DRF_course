@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_celery_beat',
 
+
     'users',
     'habits',
 ]
@@ -93,10 +94,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'drf_course',
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
+        'NAME': 'postgres',
+        # 'USER': os.getenv('DATABASE_USER'),
+        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        # 'HOST': os.getenv('DATABASE_HOST'),
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': 'db',
+
         'PORT': 5432,
     }
 }
@@ -164,8 +169,9 @@ CORS_ALLOW_ALL_ORIGINS = False
 # CELERY
 
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://localhost:6379'  # Например, Redis, который по умолчанию работает на порту 6379
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'  # URL-адрес брокера результатов, также Redis
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')  # Например, Redis, который по умолчанию работает на порту 6379
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'  # URL-адрес брокера результатов, также Redis
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_TIMEZONE = "Russia/Moscow"  # Часовой пояс для работы Celery
 CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выполнения задач
 CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи
