@@ -43,6 +43,11 @@ DOCKER and DOCKER COMPOSE:
     docker run my-python-app
   - для запуска docker-compose используйте команду в терминале:
     docker-compose up --build
+    (иногда возникает ошибка 
+     'Error response from daemon: network 903f115834bad0bd79b3f16394652f616d2e1d61f2a20f3ccfe1f800d3dcb152 not found'
+     тогда проект нужно запустить командой: 
+     docker-compose up --force-recreate
+    )
         
 FLAKE8:
   - создан файл.flake8 с соответствующими настройками
